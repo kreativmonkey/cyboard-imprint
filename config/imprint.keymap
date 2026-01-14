@@ -15,13 +15,13 @@
 
         Qwertz {
             bindings = <
-&kp EQUAL            &kp DE_N1   &kp DE_N2  &kp DE_N3  &kp DE_N4     &kp DE_N5                    &kp DE_N6  &kp DE_N7    &kp DE_N8     &kp DE_N9   &kp DE_N0            &to 1
-&kp TAB              &kp DE_Q    &kp DE_W   &kp DE_E   &kp DE_R      &kp DE_T                     &kp DE_Z   &kp DE_U     &kp DE_I      &kp DE_O    &kp DE_P             &kp DE_U_UMLAUT
-&mt CAPSLOCK ESCAPE  &kp DE_A    &kp DE_S   &kp DE_D   &kp DE_F      &kp DE_G                     &kp DE_H   &kp DE_J     &kp DE_K      &kp DE_L    &kp DE_O_UMLAUT      &kp DE_A_UMLAUT
-&kp LEFT_SHIFT       &lt 3 DE_Y  &kp DE_X   &kp DE_C   &kp DE_V      &kp DE_B                     &kp DE_N   &kp DE_M     &kp DE_COMMA  &kp DE_DOT  &lt 3 DE_UNDERSCORE  &kp RSHFT
-&mo 5                &kp LCTRL   &kp LGUI   &kp LALT   &trans                                                &trans       &kp LBKT      &kp RBKT    &trans               &trans
-                                                       &kp DE_SPACE  &kp BACKSPACE  &kp ESC       &kp GRAVE  &lt 3 ENTER  &kp SPACE
-                                                       &kp LEFT_ALT  &kp LEFT_GUI   &kp DELETE    &kp CAPS   &mo 5        &mo 6
+&kp EQUAL            &kp DE_N1   &kp DE_N2  &kp DE_N3  &kp DE_N4     &kp DE_N5                    &kp DE_N6          &kp DE_N7          &kp DE_N8      &kp DE_N9   &kp DE_N0            &to 1
+&kp TAB              &kp DE_Q    &kp DE_W   &kp DE_E   &kp DE_R      &kp DE_T                     &kp DE_Z           &kp DE_U           &kp DE_I       &kp DE_O    &kp DE_P             &kp DE_U_UMLAUT
+&mt CAPSLOCK ESCAPE  &kp DE_A    &kp DE_S   &kp DE_D   &kp DE_F      &kp DE_G                     &kp DE_H           &kp DE_J           &kp DE_K       &kp DE_L    &kp DE_O_UMLAUT      &kp DE_A_UMLAUT
+&kp LEFT_SHIFT       &lt 3 DE_Y  &kp DE_X   &kp DE_C   &kp DE_V      &kp DE_B                     &kp DE_N           &kp DE_M           &kp DE_COMMA   &kp DE_DOT  &lt 3 DE_UNDERSCORE  &kp RSHFT
+&mo 4                &kp LCTRL   &kp LGUI   &kp LALT   &trans                                                        &trans             &kp LBKT       &kp RBKT    &trans               &mo 4
+                                                       &kp DE_SPACE  &kp BACKSPACE  &kp ESC       &kp LC(RIGHT_ALT)  &lt 3 ENTER        &kp SPACE
+                                                       &kp LEFT_ALT  &kp LEFT_GUI   &kp DELETE    &kp PRINTSCREEN    &kp RIGHT_CONTROL  &kp RIGHT_ALT
             >;
         };
 
@@ -109,10 +109,10 @@
 
 &trackball_central_listener {
     input-processors =
-        // multiply sensitivity by 1, divide by 3 (make it slower for scrolling),,,,,,
+        // multiply sensitivity by 1, divide by 3 (make it slower for scrolling),,,,,,,
         <&zip_xy_scaler 1 3>,
-        // make this trackball output scrolling events by default instead of cursor movement,,,,,,
+        // make this trackball output scrolling events by default instead of cursor movement,,,,,,,
         <&zip_xy_to_scroll_mapper>,
-        // invert vertical scrolling so that the view moves in the same direction as the top of the trackball.,,,,,,
+        // invert vertical scrolling so that the view moves in the same direction as the top of the trackball.,,,,,,,
         <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
 };
