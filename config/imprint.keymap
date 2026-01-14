@@ -14,25 +14,13 @@
 
         default_layer {
             bindings = <
-&kp equal  &kp n1  &kp n2    &kp n3    &kp n4    &kp n5              &kp n6     &kp n7    &kp n8     &kp n9    &kp n0    &kp minus
-&kp tab    &kp q   &kp w     &kp e     &kp r     &kp t               &kp z      &kp u     &kp i      &kp o     &kp p     &kp bslh
-&kp lctrl  &kp a   &kp s     &kp d     &kp f     &kp g               &kp h      &kp j     &kp k      &kp l     &kp semi  &kp sqt
-&kp lshft  &kp y   &kp x     &kp c     &kp v     &kp b               &kp n      &kp m     &kp comma  &kp dot   &kp fslh  &kp rshft
-&trans     &trans  &kp lgui  &kp lalt  &trans                                   &trans    &kp lbkt   &kp rbkt  &trans    &trans
-                                       &kp ret   &kp del  &kp esc    &kp grave  &kp bspc  &kp space
-                                       &kp lgui  &mo 2    &mo 3      &kp caps   &mo 3     &mo 2
-            >;
-        };
-
-        neo {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &kp x   &kp v   &kp l   &kp c   &kp w             &kp k   &kp h   &kp g   &kp f   &kp q   &kp s
-&trans  &kp u   &kp i   &kp a   &kp e   &kp o             &kp s   &kp n   &kp r   &kp t   &kp d   &kp y
-&trans  &kp b   &trans  &trans  &kp p   &kp z             &kp b   &kp m   &trans  &trans  &kp j   &trans
-&trans  &trans  &trans  &trans  &trans                            &trans  &trans  &trans  &trans  &trans
-                                &trans  &trans  &trans    &trans  &trans  &trans
-                                &trans  &trans  &trans    &trans  &trans  &trans
+ &kp EQUAL    &kp N1    &kp N2    &kp N3    &kp N4  &kp N5                                         &kp N6      &kp N7     &kp N8    &kp N9   &kp N0   &kp MINUS
+ &kp TAB    &kp Q     &kp W     &kp E     &kp R   &kp T                                          &kp Y       &kp U      &kp I     &kp O    &kp P    &kp BSLH
+ &kp LCTRL  &kp A     &kp S     &kp D     &kp F   &kp G                                          &kp H       &kp J      &kp K     &kp L    &kp SEMI &kp SQT
+ &kp LSHFT  &kp Z     &kp X     &kp C     &kp V   &kp B                                          &kp N       &kp M      &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
+&trans     &trans  &kp LGUI  &kp LALT  &trans                                   &trans    &kp LBKT   &kp RBKT  &trans    &trans
+                                                  &kp RET  &kp DEL &kp ESC    &kp GRAVE &kp BSPC &kp SPACE
+                                                  &kp LGUI &mo 1   &mo 2      &kp CAPS  &mo 2    &mo 1
             >;
         };
 
