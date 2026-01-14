@@ -6,19 +6,6 @@
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/rgb.h>
 
-#include "zmk-helpers/helper.h"
-// Source desired key-position labels
-#include "zmk-helpers/key-labels/glove80.h"
-// Source unicode-chars for desired languages
-#include "zmk-helpers/unicode-chars/german.dtsi"
-
-// including the zmk_unicodea_pairs/single for umlaute and special characters
-zmk_unicode_pair( de_ae,   n0, n0,  e, n4,   n0, n0,  c, n4 ) // ä, ä
-zmk_unicode_pair( de_oe,   n0, n0,  f, n6,   n0, n0,  d, n6 ) // ö, ö
-zmk_unicode_pair( de_ue,   n0, n0,  f,  c,   n0, n0,  d,  c ) // ü, ü
-zmk_unicode_single(euro_sign, n2, n0, a, c) // €
-zmk_unicode_single(de_sz, n0, n0, d, f) // ß 
-
 / {
     chosen { zmk,matrix-transform = &imprint_number_row_full_bottom_row; };
 
