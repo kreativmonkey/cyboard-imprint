@@ -27,25 +27,25 @@
 
         NEO_Layout {
             bindings = <
-&trans     &trans             &trans           &trans           &trans    &trans              &trans    &trans    &trans        &trans      &trans      &to 0
-&trans     &kp DE_X           &kp DE_V         &kp DE_L         &kp DE_C  &kp DE_W            &kp DE_K  &kp DE_H  &kp DE_G      &kp DE_F    &kp DE_Q    &kp DE_SHARP_S
-&lt 2 ESC  &kp DE_U           &kp DE_I         &kp DE_A         &kp DE_E  &kp DE_O            &kp DE_S  &kp DE_N  &kp DE_R      &kp DE_T    &kp DE_D    &lt 2 DE_Y
-&trans     &lt 3 DE_U_UMLAUT  &kp DE_O_UMLAUT  &kp DE_A_UMLAUT  &kp DE_P  &kp DE_Z            &kp DE_B  &kp DE_M  &kp DE_COMMA  &kp DE_DOT  &lt 3 DE_J  &trans
-&trans     &trans             &trans           &trans           &trans                                  &trans    &trans        &trans      &trans      &trans
-                                                                &trans    &trans    &trans    &trans    &trans    &trans
-                                                                &trans    &trans    &trans    &trans    &trans    &trans
+&trans     &trans             &trans           &trans           &trans    &trans              &trans    &trans          &trans        &trans      &trans      &to 0
+&trans     &kp DE_X           &kp DE_V         &kp DE_L         &kp DE_C  &kp DE_W            &kp DE_K  &kp DE_H        &kp DE_G      &kp DE_F    &kp DE_Q    &kp DE_SHARP_S
+&lt 2 ESC  &kp DE_U           &kp DE_I         &kp DE_A         &kp DE_E  &kp DE_O            &kp DE_S  &kp DE_N        &kp DE_R      &kp DE_T    &kp DE_D    &kp DE_Y
+&trans     &lt 3 DE_U_UMLAUT  &kp DE_O_UMLAUT  &kp DE_A_UMLAUT  &kp DE_P  &kp DE_Z            &kp DE_B  &kp DE_M        &kp DE_COMMA  &kp DE_DOT  &lt 3 DE_J  &trans
+&trans     &trans             &trans           &trans           &trans                                  &trans          &trans        &trans      &trans      &trans
+                                                                &trans    &trans    &trans    &trans    &trans          &trans
+                                                                &trans    &trans    &trans    &trans    &lt 2 DE_CARET  &trans
             >;
         };
 
         Programming {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans                            &trans  &trans  &trans  &trans  &trans
-                                &trans  &trans  &trans    &trans  &trans  &trans
-                                &trans  &trans  &trans    &trans  &trans  &trans
+&trans  &kp RA(DE_N1)     &kp RA(DE_N2)  &kp RA(DE_N3)        &trans                &trans                     &trans              &trans                   &trans                    &trans               &trans            &trans
+&trans  &trans            &kp DE_UNDER   &kp DE_LEFT_BRACKET  &kp DE_RIGHT_BRACKET  &kp DE_CARET               &kp DE_EXCLAMATION  &kp DE_LESS_THAN         &kp DE_GREATER_THAN       &kp DE_EQUAL         &kp DE_AMPERSAND  &trans
+&trans  &kp DE_BACKSLASH  &kp DE_SLASH   &kp DE_LEFT_BRACE    &kp DE_RIGHT_BRACE    &kp DE_ASTERISK            &kp DE_QUESTION     &kp DE_LEFT_PARENTHESIS  &kp DE_RIGHT_PARENTHESIS  &kp DE_MINUS         &kp DE_COLON      &kp DE_AT_SIGN
+&trans  &kp DE_HASH       &kp DE_DOLLAR  &kp DE_PIPE          &kp DE_TILDE          &kp DE_GRAVE               &kp DE_PLUS         &kp DE_PERCENT           &kp DE_DOUBLE_QUOTES      &kp DE_SINGLE_QUOTE  &kp DE_SEMICOLON  &trans
+&trans  &trans            &trans         &trans               &trans                                                               &trans                   &trans                    &trans               &trans            &trans
+                                                              &trans                &trans           &trans    &trans              &trans                   &trans
+                                                              &trans                &trans           &trans    &trans              &trans                   &trans
             >;
         };
 
@@ -109,10 +109,10 @@
 
 &trackball_central_listener {
     input-processors =
-        // multiply sensitivity by 1, divide by 3 (make it slower for scrolling),,,,,,,,,,
+        // multiply sensitivity by 1, divide by 3 (make it slower for scrolling),,,,,,,,,,,
         <&zip_xy_scaler 1 3>,
-        // make this trackball output scrolling events by default instead of cursor movement,,,,,,,,,,
+        // make this trackball output scrolling events by default instead of cursor movement,,,,,,,,,,,
         <&zip_xy_to_scroll_mapper>,
-        // invert vertical scrolling so that the view moves in the same direction as the top of the trackball.,,,,,,,,,,
+        // invert vertical scrolling so that the view moves in the same direction as the top of the trackball.,,,,,,,,,,,
         <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
 };
