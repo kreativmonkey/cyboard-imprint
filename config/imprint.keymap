@@ -11,27 +11,17 @@
     chosen { zmk,matrix-transform = &imprint_number_row_full_bottom_row; };
 
     macros {
-        switch_to_neo: switch_to_de {
+        switch_to_neo: switch_to_neo {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings =
-                <&macro_press>,
-                <&to 1>,
-                <&macro_tap>,
-                <&rgb_ug RGB_COLOR_HSB(229,94,50)>;
-
-            label = "SWITCH_TO_DE";
+            bindings = <&to 1 &rgb_ug RGB_COLOR_HSB(229,94,50)>;
+            label = "SWITCH_TO_NEO";
         };
 
         switch_to_de: switch_to_de {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings =
-                <&macro_press>,
-                <&to 0>,
-                <&macro_tap>,
-                <&rgb_ug RGB_COLOR_HSB(102,51,47)>;
-
+            bindings = <&to 0 &rgb_ug RGB_COLOR_HSB(102,51,47)>;
             label = "SWITCH_TO_DE";
         };
     };
@@ -135,10 +125,10 @@
 
 &trackball_central_listener {
     input-processors =
-        // multiply sensitivity by 1, divide by 3 (make it slower for scrolling),,,,,,,,,,,,
+        // multiply sensitivity by 1, divide by 3 (make it slower for scrolling),,,,,,,,,,,,,
         <&zip_xy_scaler 1 3>,
-        // make this trackball output scrolling events by default instead of cursor movement,,,,,,,,,,,,
+        // make this trackball output scrolling events by default instead of cursor movement,,,,,,,,,,,,,
         <&zip_xy_to_scroll_mapper>,
-        // invert vertical scrolling so that the view moves in the same direction as the top of the trackball.,,,,,,,,,,,,
+        // invert vertical scrolling so that the view moves in the same direction as the top of the trackball.,,,,,,,,,,,,,
         <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
 };
