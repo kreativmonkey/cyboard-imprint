@@ -12,6 +12,117 @@ Die Farbmarkierung setzt eingeschaltete RGB-Beleuchtung voraus. Ebene 0 kann
 auch zum normalen QWERTZ-Tippen verwendet werden; ihre Navigationstasten `=`
 und Undo sind jedoch auf den privaten Linux-Neo-Host abgestimmt.
 
+## Layout und Ebenen
+
+Die Grafiken werden aus [`config/imprint.keymap`](config/imprint.keymap) und
+den 70 Tastenpositionen in [`config/info.json`](config/info.json) erzeugt.
+Sie zeigen eine schematische Draufsicht mit den Daumenclustern unten in der
+Mitte. Der einzige Trackball sitzt rechts und gehört nicht zur Tastenmatrix.
+
+**Legende:** Bei Tasten mit Doppelfunktion steht die Tippfunktion mittig und
+die Haltefunktion unten. `Nav` bedeutet Navigation, `Sym` Programmierzeichen,
+`System` Tastatursteuerung, `Maus` die manuelle Mausebene. Blau markiert
+Ebenenwechsel, Grün Maustasten. `▽` reicht an die darunterliegende aktive
+Ebene durch; `×` blockiert die Taste. `tot` kennzeichnet eine Akzenttaste.
+`Undo` sendet das zum jeweiligen Host passende Ctrl+Z.
+
+Die Nummern 0–8 sind **Firmware-Ebenen**, nicht die sechs Zeichenebenen des
+Neo-Layouts. Gezeigt werden die einzelnen Ebenen mit ihren transparenten
+Tasten, nicht sämtliche möglichen Kombinationen aktiver Ebenen.
+
+### Ebene 1: Neo auf einem QWERTZ-Host
+
+Die Buchstaben und Programmierzeichen werden von der Firmware nachgebildet.
+Transparente Positionen übernehmen die Belegung von Ebene 0.
+
+![Ebene 1 – Neo-Emulation für deutschen QWERTZ-Host](docs/keymap/layer-1.svg)
+
+<details>
+<summary>Ebene 0 – QWERTZ-Tastencodes für den Linux-Neo-Host</summary>
+
+Hier stehen die **QWERTZ-Tastenpositionen**. Auf dem privaten Rechner macht
+das installierte Neo-Layout daraus die Neo-Zeichen: Die dargestellte
+Q/W/E/R/T-Reihe ergibt beispielsweise X/V/L/C/W. Die Zeichenausgabe ist
+also vom Hostlayout abhängig.
+
+![Ebene 0 – QWERTZ-Tastencodes für den Neo-Host](docs/keymap/layer-0.svg)
+
+</details>
+
+<details>
+<summary>Ebene 2 – Programmierzeichen für den QWERTZ-Host</summary>
+
+Erreichbar aus Ebene 1 über die mit `Sym` beschrifteten Haltefunktionen.
+
+![Ebene 2 – Programmierzeichen](docs/keymap/layer-2.svg)
+
+</details>
+
+<details>
+<summary>Ebene 3 – Gemeinsame Navigation</summary>
+
+Erreichbar über `Nav`. Die Darstellung zeigt die Variante für den Neo-Host.
+Bei aktivem Firmware-Modus 1 ergänzt Ebene 7 automatisch die beiden
+hostabhängigen Bindungen für `=` und Undo.
+
+![Ebene 3 – Navigation](docs/keymap/layer-3.svg)
+
+</details>
+
+<details>
+<summary>Ebene 4 – Bluetooth, Beleuchtung und Tastatursteuerung</summary>
+
+Erreichbar durch Halten einer `System`-Taste.
+
+![Ebene 4 – Tastatursteuerung](docs/keymap/layer-4.svg)
+
+</details>
+
+<details>
+<summary>Ebene 5 – Automatische Maustasten</summary>
+
+Aktiviert sich durch Bewegung des rechten Trackballs und endet eine Sekunde
+nach dessen letzter Bewegung. Die Klicktasten liegen links auf S/D/F
+beziehungsweise Neo I/A/E.
+
+![Ebene 5 – Automatische Maustasten](docs/keymap/layer-5.svg)
+
+</details>
+
+<details>
+<summary>Ebene 6 – Werkstest</summary>
+
+Über `Werkstest` in Ebene 4 erreichbar. Oben rechts geht es zurück zu Ebene 0.
+
+![Ebene 6 – Werkstest mit Ausstieg](docs/keymap/layer-6.svg)
+
+</details>
+
+<details>
+<summary>Ebene 7 – Automatische Navigationsergänzung für QWERTZ</summary>
+
+Nur gleichzeitig mit den Ebenen 1 und 3 aktiv. `=` und Undo haben dieselbe
+Funktion wie in Ebene 3, senden hier aber die für den QWERTZ-Host nötigen
+Tastencodes. Alle übrigen Tasten werden durchgereicht.
+
+![Ebene 7 – Automatische Navigationsergänzung](docs/keymap/layer-7.svg)
+
+</details>
+
+<details>
+<summary>Ebene 8 – Manuell gehaltene Maustasten</summary>
+
+Durch Halten einer `Maus`-Taste erreichbar. Die Klickbelegung entspricht
+Ebene 5; diese Ebene bleibt jedoch so lange aktiv, wie die Taste gehalten wird.
+
+![Ebene 8 – Manuelle Maustasten](docs/keymap/layer-8.svg)
+
+</details>
+
+[Alle neun Ebenen als zusammenhängende SVG öffnen](docs/keymap/all-layers.svg).
+Nach Änderungen mit `nix develop --command just render` neu erzeugen.
+Der Renderer verwendet [keymap-drawer](https://github.com/caksoylar/keymap-drawer).
+
 ## Navigation und Sonderzeichen
 
 Die Navigationsebene wird durch Halten der Enter-Daumentaste oder der beiden
@@ -91,6 +202,7 @@ funktionsfähiges Rootless-Podman-Setup.
 ```sh
 nix develop
 just             # verfügbare Befehle
+just render      # Layoutgrafiken neu erzeugen, ohne Firmware-Setup
 just setup       # Firmware-Abhängigkeiten herunterladen
 just check       # Host-Mapping-Tests und Build beider Hälften
 ```

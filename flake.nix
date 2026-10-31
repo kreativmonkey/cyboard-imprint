@@ -19,6 +19,8 @@
             podman
             python3
             gcc
+            keymap-drawer
+            resvg
           ];
           XKB_CONFIG_ROOT = "${pkgs.xkeyboard_config}/share/X11/xkb";
           XKB_LIBRARY = "${pkgs.libxkbcommon}/lib/libxkbcommon.so.0";

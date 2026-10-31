@@ -1,6 +1,11 @@
 default:
     @just --list
 
+# Render all firmware layers from the keymap and config/info.json.
+[group('docs')]
+render:
+    python3 scripts/render_keymap.py
+
 # Fetch the firmware dependencies into .build (requires rootless Podman).
 [group('build')]
 setup:
