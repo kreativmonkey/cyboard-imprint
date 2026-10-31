@@ -198,9 +198,10 @@ text.label { font-size: 18px; fill: #0f172a; stroke: none; }
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key trans"/>
 <text x="0" y="0" class="key trans tap">▽</text>
 </g>
-<g transform="translate(1020, 30)" class="key trans keypos-11">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key trans"/>
-<text x="0" y="0" class="key trans tap">▽</text>
+<g transform="translate(1020, 30)" class="key layer keypos-11">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key layer"/>
+<text x="0" y="0" class="key layer tap">Scroll</text>
+<text x="0" y="26" class="key layer hold"><tspan style="font-size: 60%">umschalten</tspan></text>
 </g>
 <g transform="translate(30, 90)" class="key keypos-12">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>

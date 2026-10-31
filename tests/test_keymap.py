@@ -184,12 +184,13 @@ class KeymapTests(unittest.TestCase):
                 self.assertEqual(host.compose(codes), expected)
 
     def test_factory_test_has_an_exit(self):
-        self.assertTrue(any(b[0].startswith("switch_to_") or b[0] == "to"
-                            for b in bindings("factory_test")))
+        exit_binding = bindings("factory_test")[11]
+        exit_steps = [exit_binding] if exit_binding[0] == "to" else bindings(exit_binding[0])
+        self.assertIn(["to", "0"], exit_steps)
 
     def test_mouse_is_reachable_and_automatic(self):
         self.assertIn(["mo", "8"], bindings("Qwertz"))
-        self.assertRegex(NODES["trackball_peripheral_listener"], r"&zip_temp_layer\s+5\s+\d+")
+        self.assertRegex(SOURCE, r"&trackball_peripheral_listener\s*\{\s*input-processors\s*=\s*<&zip_temp_layer\s+5\s+\d+>")
         for position in (26, 27, 28):
             self.assertEqual(bindings("Manual_Mouse_Layer")[position], bindings("Auto_Mouse_Layer")[position])
 

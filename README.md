@@ -37,7 +37,7 @@ Ebenenwechsel, Grün Maustasten. `▽` reicht an die darunterliegende aktive
 Ebene durch; `×` blockiert die Taste. `tot` kennzeichnet eine Akzenttaste.
 `Undo` sendet das zum jeweiligen Host passende Ctrl+Z.
 
-Die Nummern 0–8 sind **Firmware-Ebenen**, nicht die sechs Zeichenebenen des
+Die Nummern 0–9 sind **Firmware-Ebenen**, nicht die sechs Zeichenebenen des
 Neo-Layouts. Gezeigt werden die einzelnen Ebenen mit ihren transparenten
 Tasten, nicht sämtliche möglichen Kombinationen aktiver Ebenen.
 
@@ -130,7 +130,17 @@ Ebene 5; diese Ebene bleibt jedoch so lange aktiv, wie die Taste gehalten wird.
 
 </details>
 
-[Alle neun Ebenen als zusammenhängende SVG öffnen](docs/keymap/all-layers.svg).
+<details>
+<summary>Ebene 9 – Trackball-Scrollmodus</summary>
+
+Die Ebene ist für Tasten transparent. Sie schaltet ausschließlich die
+Bewegung des rechten Trackballs auf vertikales und horizontales Scrollen um.
+
+![Ebene 9 – Trackball-Scrollmodus](docs/keymap/layer-9.svg)
+
+</details>
+
+[Alle zehn Ebenen als zusammenhängende SVG öffnen](docs/keymap/all-layers.svg).
 Nach Änderungen mit `nix develop --command just render` neu erzeugen.
 Der Renderer verwendet [keymap-drawer](https://github.com/caksoylar/keymap-drawer).
 
@@ -161,15 +171,20 @@ Vorlage zusätzlich angelegte linke Sensor ist durch `imprint_left.overlay`
 deaktiviert. Die linke Hälfte empfängt weiterhin die Bewegungen des rechten
 Trackballs über die Split-Verbindung und leitet sie an den Rechner weiter.
 
-- **Rechter Trackball:** Mauszeiger bewegen. Nach mindestens 200 ms Tipp-Pause
-  aktiviert eine Bewegung automatisch die vorhandenen Maustasten für eine
-  Sekunde nach der letzten Bewegung.
+- **Rechter Trackball:** Standardmäßig den Mauszeiger bewegen. Nach mindestens
+  200 ms Tipp-Pause aktiviert eine Bewegung automatisch die vorhandenen
+  Maustasten für eine Sekunde nach der letzten Bewegung.
+- **Zwischen Mauszeiger und Scrollen wechseln:** Eine der äußeren `System`-Tasten
+  in der unteren Fingerreihe halten und die Taste ganz rechts in der
+  Zahlenreihe drücken. Erneutes Drücken schaltet zurück. Ohne `System` wechselt
+  diese Taste weiterhin zwischen Neo und QWERTZ. Im Scrollmodus scrollt der
+  Trackball vertikal und horizontal mit reduzierter Empfindlichkeit; die
+  automatischen Maustasten bleiben verfügbar. Der Modus bleibt beim
+  Neo/QWERTZ-Wechsel erhalten und wird beim Aufruf des Werkstests zurückgesetzt.
 - **Maustasten dauerhaft erreichbar halten:** Die innerste Taste der untersten
   Fingerreihe auf einer der beiden Hälften halten, direkt oberhalb des
   Daumenclusters. Diese beiden bislang unbelegten Tasten aktivieren eine
   separate manuelle Mausebene, die nicht durch den Automatik-Timer endet.
-
-Eine Umschaltung des rechten Trackballs auf Scrollen ist derzeit nicht belegt.
 
 Die Klicktasten liegen links auf der Grundreihe:
 
