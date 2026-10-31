@@ -1,0 +1,12 @@
+// This Imprint has a trackball on the right half only. Disable the left
+// sensor inherited from Cyboard's dual-trackball shield definition.
+&trackball_central {
+    status = "disabled";
+};
+
+&trackball_central_listener {
+    status = "disabled";
+};
+
+// Keep trackball_peripheral_listener enabled: the left half receives the
+// right trackball's events over the split connection and sends them to the host.

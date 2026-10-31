@@ -32,17 +32,22 @@ Die griechischen und mathematischen Ebenen werden im QWERTZ-Host-Modus
 weiterhin nicht nachgebildet. Auf dem Linux-Neo-Host bleiben die vom System
 bereitgestellten Mod3-/Mod4-Kombinationen verfügbar.
 
-## Trackballs und Maustasten
+## Rechter Trackball und Maustasten
+
+Diese Imprint besitzt **nur rechts einen Trackball**. Der in Cyboards
+Vorlage zusätzlich angelegte linke Sensor ist durch `imprint_left.overlay`
+deaktiviert. Die linke Hälfte empfängt weiterhin die Bewegungen des rechten
+Trackballs über die Split-Verbindung und leitet sie an den Rechner weiter.
 
 - **Rechter Trackball:** Mauszeiger bewegen. Nach mindestens 200 ms Tipp-Pause
   aktiviert eine Bewegung automatisch die vorhandenen Maustasten für eine
   Sekunde nach der letzten Bewegung.
-- **Linker Trackball:** horizontal und vertikal scrollen. Die bisherige
-  Richtung und die auf ein Drittel reduzierte Empfindlichkeit bleiben erhalten.
 - **Maustasten dauerhaft erreichbar halten:** Die innerste Taste der untersten
   Fingerreihe auf einer der beiden Hälften halten, direkt oberhalb des
   Daumenclusters. Diese beiden bislang unbelegten Tasten aktivieren eine
   separate manuelle Mausebene, die nicht durch den Automatik-Timer endet.
+
+Eine Umschaltung des rechten Trackballs auf Scrollen ist derzeit nicht belegt.
 
 Die Klicktasten liegen links auf der Grundreihe:
 
@@ -96,7 +101,7 @@ passenden Datei aktualisieren. Die Settings-Partition liegt weiterhin an
 derselben Stelle; ein vorsorglicher Settings-Reset ist nicht vorgesehen.
 Die Tests prüfen Tastencodes mit den echten
 ZMK-Headern und libxkbcommon für Deutsch und Neo. Sie ersetzen keinen Test
-der Trackballs, der Bluetooth-Verbindung oder einer Windows/Citrix-Sitzung.
+des Trackballs, der Bluetooth-Verbindung oder einer Windows/Citrix-Sitzung.
 
 [Cyboard-Anleitung](https://docs.cyboard.digital/user-manual/quick-start/configure-layout)
 und [Keymap-Editor](https://nickcoutsos.github.io/keymap-editor/).

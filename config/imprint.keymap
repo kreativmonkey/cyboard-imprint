@@ -179,14 +179,3 @@
     require-prior-idle-ms = <200>;
     excluded-positions = <26 27 28 52 53>;
 };
-
-// Left trackball scrolls; preserve the established sensitivity and direction.
-&trackball_central_listener {
-    input-processors =
-        // multiply sensitivity by 1, divide by 3 (make it slower for scrolling)
-        <&zip_xy_scaler 1 3>,
-        // make this trackball output scrolling events by default instead of cursor movement
-        <&zip_xy_to_scroll_mapper>,
-        // invert vertical scrolling so that the view moves with the top of the trackball
-        <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
-};
