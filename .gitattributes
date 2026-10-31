@@ -1,0 +1,2 @@
+# The nested Git patch has context lines containing a single space.
+patches/*.patch -whitespace

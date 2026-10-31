@@ -12,6 +12,17 @@ Die Farbmarkierung setzt eingeschaltete RGB-Beleuchtung voraus. Ebene 0 kann
 auch zum normalen QWERTZ-Tippen verwendet werden; ihre Navigationstasten `=`
 und Undo sind jedoch auf den privaten Linux-Neo-Host abgestimmt.
 
+## Akkustand auf den LEDs
+
+Die äußere linke `System`-Taste in der unteren Fingerreihe halten und die Taste
+direkt rechts neben `Caps/Esc` drücken. Beide Hälften zeigen dann **vier Sekunden
+lang ihren eigenen Akkustand**: Die ersten zehn LEDs bilden einen Balken in
+10-%-Schritten. Rot bedeutet höchstens 20 %, Gelb höchstens 50 %, sonst Grün.
+Bei 0 % leuchtet eine rote LED, damit die Anzeige erkennbar bleibt. Danach
+kehrt die Beleuchtung zu ihrer vorherigen Einstellung zurück, auch wenn sie
+zuvor ausgeschaltet war. Beide Hälften müssen verbunden sein und die neue
+Firmware tragen.
+
 ## Layout und Ebenen
 
 Die Grafiken werden aus [`config/imprint.keymap`](config/imprint.keymap) und
@@ -193,7 +204,10 @@ ZMK `main` ist ein Entwicklungsstand; die jüngste veröffentlichte ZMK-Version
 ist bei dieser Aktualisierung weiterhin 0.3.0. Cyboards `main` richtet sich
 noch an 0.3, deshalb wird hier der ausdrücklich für Zephyr 4.1 angepasste
 Board-Branch verwendet. Beim nächsten Update die Revisionen bewusst gemeinsam
-prüfen. Hintergrund: [ZMKs Zephyr-4.1-Migration](https://zmk.dev/blog/2025/12/09/zephyr-4-1).
+prüfen. Die Akkuanzeige ergänzt die gepinnte ZMK-Version mit
+[`patches/zmk-battery-led.patch`](patches/zmk-battery-led.patch); bei einem
+ZMK-Update muss dieser Patch erneut geprüft werden. Hintergrund:
+[ZMKs Zephyr-4.1-Migration](https://zmk.dev/blog/2025/12/09/zephyr-4-1).
 
 Lokal werden die gleichen Build-Werkzeuge wie in ZMKs CI über einen
 festgelegten Container verwendet. Voraussetzung: Linux, Nix und ein
