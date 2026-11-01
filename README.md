@@ -14,9 +14,11 @@ und Undo sind jedoch auf den privaten Linux-Neo-Host abgestimmt.
 
 ## Akkustand auf den LEDs
 
-Eine äußere `System`-Taste in der unteren Fingerreihe halten und eine der beiden
-`OS`-/Super-Tasten links drücken: in der unteren Fingerreihe neben `Ctrl` oder
-im linken Daumencluster. Die rechte `System`-Taste funktioniert dafür ebenfalls.
+Auf dieser Imprint die rechte äußere `System`-Taste in der unteren Fingerreihe
+halten und die `OS`-/Super-Taste im linken Daumencluster drücken. Beide Tasten
+wurden im Werkstest als funktionierend bestätigt. Die `OS`-Taste in der unteren
+linken Fingerreihe ist ebenfalls belegt; diese Reihe reagiert am vorliegenden
+Gerät derzeit jedoch nicht zuverlässig.
 Die bisherige Kombination `System` + Taste rechts neben `Caps/Esc` bleibt
 erhalten. `System` allein hat keine sichtbare Wirkung.
 
