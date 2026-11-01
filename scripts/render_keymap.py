@@ -17,6 +17,7 @@ LAYERS = [
     "6 - Werkstest",
     "7 - Navigation QWERTZ: automatisch bei 1 + 3",
     "8 - Maus manuell: Taste halten",
+    "9 - Trackball-Scrollmodus: umschaltbar",
 ]
 
 
@@ -43,6 +44,7 @@ def main():
     raw = {
         "&switch_to_neo": {"t": "Host DE", "h": "wechseln", "type": "layer"},
         "&switch_to_de": {"t": "Host Neo", "h": "wechseln", "type": "layer"},
+        "&factory_exit": {"t": "Werkstest", "h": "verlassen", "type": "layer"},
         "&literal_caret": "^", "&literal_grave": "`",
         "&kp EQUAL": {"t": "´", "s": "tot"},
         "&kp DE_CARET": {"t": "^", "s": "tot"},
@@ -58,6 +60,7 @@ def main():
         "&bat_led": "Akku",
         "&studio_unlock": "Studio frei", "&bt BT_CLR": "BT löschen",
         "&to 6": {"t": "Werkstest", "h": "wechseln", "type": "layer"},
+        "&tog 9": {"t": "Scroll", "h": "umschalten", "type": "layer"},
     }
     for index, label in {2: "Sym", 3: "Nav", 4: "System", 8: "Maus"}.items():
         raw[f"&mo {index}"] = {"t": label, "h": "halten", "type": "layer"}
