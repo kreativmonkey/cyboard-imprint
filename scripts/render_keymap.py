@@ -49,6 +49,7 @@ def main():
         "&kp EQUAL": {"t": "´", "s": "tot"},
         "&kp DE_CARET": {"t": "^", "s": "tot"},
         "&lt 2 DE_CARET": {"t": "^", "h": "Sym", "s": "tot"},
+        "&lt 9 ENTER": {"t": "Enter", "h": "Scroll", "type": "layer"},
         "&kp LC(B)": "Undo", "&kp LC(DE_Z)": "Undo",
         "&kp LC(RIGHT_ALT)": "Ctrl+AltGr",
         "&kp RA(DE_N1)": "AltGr+1", "&kp RA(DE_N2)": "²", "&kp RA(DE_N3)": "³",

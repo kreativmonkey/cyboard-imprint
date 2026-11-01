@@ -399,10 +399,10 @@ text.label { font-size: 18px; fill: #0f172a; stroke: none; }
 <tspan x="0" dy="-0.6em">Ctrl+</tspan><tspan x="0" dy="1.2em">AltGr</tspan>
 </text>
 </g>
-<g transform="translate(630, 300)" class="key keypos-62">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-<text x="0" y="0" class="key tap">Enter</text>
-<text x="0" y="26" class="key hold">Nav</text>
+<g transform="translate(630, 300)" class="key layer keypos-62">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key layer"/>
+<text x="0" y="0" class="key layer tap">Enter</text>
+<text x="0" y="26" class="key layer hold">Scroll</text>
 </g>
 <g transform="translate(690, 300)" class="key keypos-63">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
