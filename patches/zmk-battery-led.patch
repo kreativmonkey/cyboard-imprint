@@ -1,0 +1,148 @@
+diff --git a/app/include/zmk/rgb_underglow.h b/app/include/zmk/rgb_underglow.h
+index be0ef25..0928def 100644
+--- a/app/include/zmk/rgb_underglow.h
++++ b/app/include/zmk/rgb_underglow.h
+@@ -6,6 +6,8 @@
+ 
+ #pragma once
+ 
++#include <stdint.h>
++
+ struct zmk_led_hsb {
+     uint16_t h;
+     uint8_t s;
+@@ -27,3 +29,4 @@ int zmk_rgb_underglow_change_sat(int direction);
+ int zmk_rgb_underglow_change_brt(int direction);
+ int zmk_rgb_underglow_change_spd(int direction);
+ int zmk_rgb_underglow_set_hsb(struct zmk_led_hsb color);
++int zmk_rgb_underglow_show_battery(uint8_t percent);
+diff --git a/app/src/rgb_underglow.c b/app/src/rgb_underglow.c
+index 3453fb4..4a2bef8 100644
+--- a/app/src/rgb_underglow.c
++++ b/app/src/rgb_underglow.c
+@@ -11,6 +11,7 @@
+ 
+ #include <math.h>
+ #include <stdlib.h>
++#include <string.h>
+ 
+ #include <zephyr/logging/log.h>
+ 
+@@ -66,6 +67,15 @@ static struct led_rgb pixels[STRIP_NUM_PIXELS];
+ 
+ static struct rgb_underglow_state state;
+ 
++#define BATTERY_LED_SEGMENTS 10
++#define BATTERY_LED_DURATION_MS 4000
++static bool battery_overlay_active;
++static uint8_t battery_overlay_percent;
++static uint8_t battery_overlay_requested_percent;
++#if IS_ENABLED(CONFIG_ZMK_RGB_UNDERGLOW_EXT_POWER)
++static bool battery_overlay_power_was_on;
++#endif
++
+ #if IS_ENABLED(CONFIG_ZMK_RGB_UNDERGLOW_EXT_POWER)
+ static const struct device *const ext_power = DEVICE_DT_GET(DT_INST(0, zmk_ext_power_generic));
+ #endif
+@@ -176,7 +186,21 @@ static void zmk_rgb_underglow_effect_swirl(void) {
+ }
+ 
+ static void zmk_rgb_underglow_tick(struct k_work *work) {
+-    switch (state.current_effect) {
++    if (!state.on && !battery_overlay_active) {
++        return;
++    }
++
++    if (battery_overlay_active) {
++        /* The shield's chain length is an upper bound, not the physical LED count.
++         * Use only the first ten LEDs as a ten-step gauge on each half. */
++        int lit = MAX(1, DIV_ROUND_UP(battery_overlay_percent, 10));
++        struct led_rgb color = battery_overlay_percent <= 20 ? (struct led_rgb){.r = 127} :
++                               battery_overlay_percent <= 50 ? (struct led_rgb){.r = 127, .g = 127} :
++                                                               (struct led_rgb){.g = 127};
++        for (int i = 0; i < STRIP_NUM_PIXELS; i++) {
++            pixels[i] = i < BATTERY_LED_SEGMENTS && i < lit ? color : (struct led_rgb){0};
++        }
++    } else switch (state.current_effect) {
+     case UNDERGLOW_EFFECT_SOLID:
+         zmk_rgb_underglow_effect_solid();
+         break;
+@@ -200,7 +224,7 @@ static void zmk_rgb_underglow_tick(struct k_work *work) {
+ K_WORK_DEFINE(underglow_tick_work, zmk_rgb_underglow_tick);
+ 
+ static void zmk_rgb_underglow_tick_handler(struct k_timer *timer) {
+-    if (!state.on) {
++    if (!state.on && !battery_overlay_active) {
+         return;
+     }
+ 
+@@ -209,6 +233,58 @@ static void zmk_rgb_underglow_tick_handler(struct k_timer *timer) {
+ 
+ K_TIMER_DEFINE(underglow_tick, zmk_rgb_underglow_tick_handler, NULL);
+ 
++static void battery_overlay_end(struct k_work *work) {
++    battery_overlay_active = false;
++    if (state.on) {
++        /* The normal 50 ms tick restores the configured color and effect. */
++        return;
++    }
++
++    k_timer_stop(&underglow_tick);
++    memset(pixels, 0, sizeof(pixels));
++    led_strip_update_rgb(led_strip, pixels, STRIP_NUM_PIXELS);
++#if IS_ENABLED(CONFIG_ZMK_RGB_UNDERGLOW_EXT_POWER)
++    if (!battery_overlay_power_was_on) {
++        ext_power_disable(ext_power);
++    }
++#endif
++}
++
++K_WORK_DELAYABLE_DEFINE(battery_overlay_end_work, battery_overlay_end);
++
++static void battery_overlay_start(struct k_work *work) {
++    if (!state.on && !battery_overlay_active) {
++#if IS_ENABLED(CONFIG_ZMK_RGB_UNDERGLOW_EXT_POWER)
++        int power = ext_power_get(ext_power);
++        if (power < 0) {
++            return;
++        }
++        battery_overlay_power_was_on = power != 0;
++        if (!battery_overlay_power_was_on && ext_power_enable(ext_power) < 0) {
++            return;
++        }
++#endif
++    }
++
++    battery_overlay_percent = battery_overlay_requested_percent;
++    battery_overlay_active = true;
++    k_timer_start(&underglow_tick, K_NO_WAIT, K_MSEC(50));
++    k_work_reschedule_for_queue(zmk_workqueue_lowprio_work_q(), &battery_overlay_end_work,
++                                K_MSEC(BATTERY_LED_DURATION_MS));
++}
++
++K_WORK_DEFINE(battery_overlay_start_work, battery_overlay_start);
++
++int zmk_rgb_underglow_show_battery(uint8_t percent) {
++    if (!led_strip) {
++        return -ENODEV;
++    }
++
++    battery_overlay_requested_percent = MIN(percent, 100);
++    int err = k_work_submit_to_queue(zmk_workqueue_lowprio_work_q(), &battery_overlay_start_work);
++    return MIN(err, 0);
++}
++
+ #if IS_ENABLED(CONFIG_SETTINGS)
+ static int rgb_settings_set(const char *name, size_t len, settings_read_cb read_cb, void *cb_arg) {
+     const char *next;
+@@ -331,6 +407,10 @@ int zmk_rgb_underglow_off(void) {
+     if (!led_strip)
+         return -ENODEV;
+ 
++    battery_overlay_active = false;
++    k_work_cancel(&battery_overlay_start_work);
++    k_work_cancel_delayable(&battery_overlay_end_work);
++
+ #if IS_ENABLED(CONFIG_ZMK_RGB_UNDERGLOW_EXT_POWER)
+     if (ext_power != NULL) {
+         int rc = ext_power_disable(ext_power);

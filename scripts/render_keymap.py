@@ -55,6 +55,7 @@ def main():
         "&mkp LCLK": {"t": "Links", "h": "Klick", "type": "mouse"},
         "&none": {"t": "×", "type": "trans"},
         "&sys_reset": "Neustart", "&bootloader": "Bootloader",
+        "&bat_led": "Akku",
         "&studio_unlock": "Studio frei", "&bt BT_CLR": "BT löschen",
         "&to 6": {"t": "Werkstest", "h": "wechseln", "type": "layer"},
     }
