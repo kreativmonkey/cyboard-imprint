@@ -377,9 +377,9 @@ text.label { font-size: 18px; fill: #0f172a; stroke: none; }
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key trans"/>
 <text x="0" y="0" class="key trans tap">▽</text>
 </g>
-<g transform="translate(150, 270)" class="key trans keypos-50">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key trans"/>
-<text x="0" y="0" class="key trans tap">▽</text>
+<g transform="translate(150, 270)" class="key keypos-50">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
+<text x="0" y="0" class="key tap">Akku</text>
 </g>
 <g transform="translate(210, 270)" class="key trans keypos-51">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key trans"/>
@@ -438,9 +438,9 @@ text.label { font-size: 18px; fill: #0f172a; stroke: none; }
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key trans"/>
 <text x="0" y="0" class="key trans tap">▽</text>
 </g>
-<g transform="translate(420, 360)" class="key trans keypos-65">
-<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key trans"/>
-<text x="0" y="0" class="key trans tap">▽</text>
+<g transform="translate(420, 360)" class="key keypos-65">
+<rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
+<text x="0" y="0" class="key tap">Akku</text>
 </g>
 <g transform="translate(480, 360)" class="key trans keypos-66">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key trans"/>

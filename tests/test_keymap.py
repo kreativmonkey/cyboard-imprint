@@ -194,6 +194,17 @@ class KeymapTests(unittest.TestCase):
         for position in (26, 27, 28):
             self.assertEqual(bindings("Manual_Mouse_Layer")[position], bindings("Auto_Mouse_Layer")[position])
 
+    def test_thumb_enter_holds_scroll_in_both_host_modes(self):
+        self.assertEqual(bindings("Qwertz")[62], ["lt", "9", "ENTER"])
+        self.assertEqual(bindings("NEO_Layout")[62], ["trans"])
+        self.assertEqual(bindings("Scroll_Mode")[62], ["trans"])
+
+    def test_battery_shortcut_uses_os_keys(self):
+        for position in (48, 57):
+            self.assertEqual(bindings("Qwertz")[position], ["mo", "4"])
+        for position in (50, 65):
+            self.assertEqual(bindings("Keyboard_Control_Layer")[position], ["bat_led"])
+
     def test_layer_sizes(self):
         for layer in LAYERS:
             self.assertEqual(len(bindings(layer)), 70, layer)

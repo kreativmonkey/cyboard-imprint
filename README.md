@@ -14,8 +14,13 @@ und Undo sind jedoch auf den privaten Linux-Neo-Host abgestimmt.
 
 ## Akkustand auf den LEDs
 
-Die äußere linke `System`-Taste in der unteren Fingerreihe halten und die Taste
-direkt rechts neben `Caps/Esc` drücken. Beide Hälften zeigen dann **vier Sekunden
+Eine äußere `System`-Taste in der unteren Fingerreihe halten und eine der beiden
+`OS`-/Super-Tasten links drücken: in der unteren Fingerreihe neben `Ctrl` oder
+im linken Daumencluster. Die rechte `System`-Taste funktioniert dafür ebenfalls.
+Die bisherige Kombination `System` + Taste rechts neben `Caps/Esc` bleibt
+erhalten. `System` allein hat keine sichtbare Wirkung.
+
+Beide Hälften zeigen dann **vier Sekunden
 lang ihren eigenen Akkustand**: Die ersten zehn LEDs bilden einen Balken in
 10-%-Schritten. Rot bedeutet höchstens 20 %, Gelb höchstens 50 %, sonst Grün.
 Bei 0 % leuchtet eine rote LED, damit die Anzeige erkennbar bleibt. Danach
@@ -135,6 +140,8 @@ Ebene 5; diese Ebene bleibt jedoch so lange aktiv, wie die Taste gehalten wird.
 
 Die Ebene ist für Tasten transparent. Sie schaltet ausschließlich die
 Bewegung des rechten Trackballs auf vertikales und horizontales Scrollen um.
+Sie wird per `System`-Kombination dauerhaft oder durch Halten der
+Enter-Daumentaste vorübergehend aktiviert.
 
 ![Ebene 9 – Trackball-Scrollmodus](docs/keymap/layer-9.svg)
 
@@ -146,8 +153,8 @@ Der Renderer verwendet [keymap-drawer](https://github.com/caksoylar/keymap-drawe
 
 ## Navigation und Sonderzeichen
 
-Die Navigationsebene wird durch Halten der Enter-Daumentaste oder der beiden
-vorhandenen Layer-Tap-Tasten in der unteren Buchstabenreihe aktiviert.
+Die Navigationsebene wird durch Halten einer der beiden Layer-Tap-Tasten in
+der unteren Buchstabenreihe aktiviert.
 Die Cursorsteuerung sendet echte Pfeil-, Pos1-, Ende- und Bildtasten.
 Shift und Ctrl können damit zum Markieren bzw. zur wortweisen Bewegung
 kombiniert werden. Die Ziffern werden unabhängig von NumLock gesendet.
@@ -181,6 +188,9 @@ Trackballs über die Split-Verbindung und leitet sie an den Rechner weiter.
   Trackball vertikal und horizontal mit reduzierter Empfindlichkeit; die
   automatischen Maustasten bleiben verfügbar. Der Modus bleibt beim
   Neo/QWERTZ-Wechsel erhalten und wird beim Aufruf des Werkstests zurückgesetzt.
+- **Nur beim Halten scrollen:** Die Enter-Taste im rechten Daumencluster halten
+  und den Trackball bewegen. Kurzes Tippen sendet weiterhin Enter. War der
+  dauerhafte Scrollmodus schon eingeschaltet, bleibt er nach dem Loslassen an.
 - **Maustasten dauerhaft erreichbar halten:** Die innerste Taste der untersten
   Fingerreihe auf einer der beiden Hälften halten, direkt oberhalb des
   Daumenclusters. Diese beiden bislang unbelegten Tasten aktivieren eine
